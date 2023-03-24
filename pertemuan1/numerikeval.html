@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numeric Eval</title>
+</head>
+<body>
+    <h1>Numerik dan fungsi Eval()</h1>
+
+    <script>
+        var buku;
+        buku = prompt("Berapa harga buku? ")
+        buku = eval(buku)
+        var diskon = 0.2 * buku
+        var total = buku - diskon
+        alert("Harga buku: Rp. " + buku)
+        alert("Diskon: Rp. " + diskon)
+        alert("Total harga buku: RP. " + total)
+    </script>
+</body>
+</html>
