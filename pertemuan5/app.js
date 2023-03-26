@@ -25,22 +25,6 @@ var dataProduct = {
     ]
 }
 
-// const { createApp } = Vue
-
-// createApp({
-//     data(){
-//         return{
-//             dataProduct 
-//         }
-//     },
-//     computed: {
-//         productOnSale: function(){
-//             return this.data.filter(Number(data.product.price) <= data.harga)
-//         }
-//     }
-// }).mount('#app')
-
-
 var app = new Vue({
     el: '#app',
     data: dataProduct
