@@ -1,9 +1,22 @@
 const profile = {
+    logo : 'JRFS',
     biodata: {
-        nama: 'Josep Ronaldo Francis Siregar',
+        nama : 'Josep Ronaldo Francis Siregar',
+        desc : 'A student who is confused and often innovates continuously but is never executed and often thinks too far from what will happen.',
         birth: '22 Juni 2002',
         hobbys: [
-            "Game", "Trading", "Politics"
+            {
+                'hobbys_id' : '1',
+                'name' : 'Badminton'
+            },
+            {
+                'hobbys_id' : '2',
+                'name' : 'Game'
+            },
+            {
+                'hobbys_id' : '3',
+                'name' : 'Trading'
+            }
         ],
         citizen: 'Indonesia',
         img: 'JRFS.jpg'
@@ -36,21 +49,42 @@ const profile = {
         "Web Fullstack",
         "Database administrator"
     ],
+    portofolio: [
+        {
+            'img' : 'rendangpakombak.png',
+            'desc' : 'The umkm project from the RPL course, I served as a Fullstack Dev',
+            'link' : 'http://rpotesting.rf.gd/?i=1'
+        },
+        {
+            'img' : 'bsti.png',
+            'desc' : 'Project from BSTI by serving as a database administrator',
+            'link' : '#'
+        }
+    ],
     kontak: [
         {
-            'kontakk_id' : 1,
+            'kontak_id' : 1,
             'name': 'github',
+            'color' : 'primary',
             'link': 'https://github.com/jrfs22'
         },
         {
-            'kontakk_id' : 2,
+            'kontak_id' : 2,
             'name': 'linkedin',
+            'color' : 'warning',
             'link': 'https://www.linkedin.com/in/josep-ronaldo-francis-siregar-4344111ba/'
         },
         {
-            'kontakk_id' : 3,
+            'kontak_id' : 3,
             'name': 'instagram',
+            'color' : 'success',
             'link': 'https://instagram.com/mr.jrfs'
+        },
+        {
+            'kontak_id' : 4,
+            'name': 'whatsapp',
+            'color' : 'danger',
+            'link': 'https://wa.link/hp4oji'
         }
     ]
 }

@@ -15,11 +15,12 @@
   </head>
   <body>
 
+<div id="app">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div class="container">
             <a class="navbar-brand" href="#">
-                JRFS
+                {{ logo }}
             </a>
             <button
                 class="navbar-toggler"
@@ -55,42 +56,49 @@
                     <div class="container">
                         <h1 class="text-xl-start pt-5">
                             <span class="text-dark">Hi There,</span> 
-                            <div class="text-warning">I'm Josep Ronaldo Francis Siregar</div>
+                            <div class="text-warning">I'm {{ biodata.nama }}</div>
                         </h1>
 
                         <p>
-                            A student who is confused and often innovates continuously but is never executed and often thinks too far from what will happen.
+                            {{ biodata.desc }}
                         </p>
-                        <!-- <div>
-                            <span class="bg-primary p-1 border-3 text-light rounded-2">Web Backend Developer</span>
-                            <span class="bg-dark p-1 border-3 text-light rounded-2">Web Frontend Developer</span>
-                            <span class="bg-danger p-1 border-3 text-light rounded-2">Database administrator</span>
-                            <span class="bg-success p-1 border-3 text-light rounded-2">Data analyst</span>
-                        </div> -->
 
-                        <button class="btn btn-dark mt-1">About me</button>
-                        <div class="medsos mt-2">
-                            <button class="btn btn-warning">
-                                <i class="fa-brands fa-github"></i>
-                            </button>
-                            <button class="btn btn-warning">
-                                <i class="fa-brands fa-linkedin"></i>
-                            </button>
-                            <button class="btn btn-warning">
-                                <i class="fa-brands fa-instagram"></i>
-                            </button>
-                            <button class="btn btn-warning">
-                                <i class="fa-brands fa-whatsapp"></i>
-                            </button>
+                        <div class="mb-2">
+                            <a href="#about" class="btn btn-dark mt-1">About me</a>
+                        </div>
+                        <div class="d-inline mt-2 me-2" v-for="item in kontak">
+                            <a v-bind:href="item.link" class="btn" v-bind:class="'btn-'+[item.color]" target="_blank">
+                                <i class="fa-brands" v-bind:class="'fa-' + [item.name]"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 p-1">
-                    <img src="img/JRFS.jpg" width="70%" height="70%" class="img-fluid rounded" alt="Josep Ronaldo">
+                    <img v-bind:src="'img/' + biodata.img" width="70%" height="70%" class="img-fluid rounded" alt="Josep Ronaldo">
                 </div>
             </div>
         </div>
     </div>
+
+
+    <section id="portofolio" class="bg-light pt-5">
+        <div class="container">
+            <div  class="text-center">
+                <h2>Portofolio</h2>
+                <div class="row pt-2">
+                    <div class="col-md-6" v-for="item in portofolio">
+                        <div class="card" v-bind:title="item.name">
+                            <img v-bind:src="'img/' + item.img" class="card-img-top" v-bind:alt="'Website '+item.name">
+                            <div class="card-body">
+                                <p class="card-text">{{ item.desc }}</p>
+                                <a v-bind:href="item.link" class="btn btn-primary">Visit</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section id="about" class="bg-light pt-5 p-1">
         <div class="container">
@@ -106,10 +114,15 @@
                         </div>
                         <div class="card-body">
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><b>Name </b>  Josep Ronaldo Francis Siregar</li>
-                                <li class="list-group-item"><b>Birth</b> 22 Juni 2002</li>
-                                <li class="list-group-item"><b>Hobbys</b> Game, Trading, Politics</li>
-                                <li class="list-group-item"><b>Citizen</b> Indonesia</li>
+                                <li class="list-group-item"><b>Name </b>  {{ biodata.nama }}</li>
+                                <li class="list-group-item"><b>Birth</b> {{ biodata.birth }}</li>
+                                <li class="list-group-item"><b>Hobbys</b>
+                                    <span v-for="item in biodata.hobbys">
+                                        <span v-if="item.hobbys_id != 3">{{ item.name }}, </span>
+                                        <span v-else>{{ item.name }}</span>
+                                    </span>
+                                </li>
+                                <li class="list-group-item"><b>Citizen</b> {{ biodata.citizen }}</li>
                             </ul>
                         </div>
                     </div>
@@ -121,10 +134,9 @@
                         </div>
                         <div class="card-body">
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><b>2021 - Now |</b> Politeknik Caltex Riau</li>
-                                <li class="list-group-item"><b>2017 - 2020 |</b> SMKN 2 Pekanbaru</li>
-                                <li class="list-group-item"><b>2014 - 2017 |</b> SMPN 8 Tapung</li>
-                                <li class="list-group-item"><b>2008 - 2014 |</b> SDN 023 Seigaro</li>
+                                <li class="list-group-item" v-for="item in education">
+                                    <b>{{ item.date }} |</b> {{ item.sekolah }}
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -136,10 +148,9 @@
                         </div>
                         <div class="card-body">
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Web Backend Developer</li>
-                                <li class="list-group-item">Web Frontend Developer</li>
-                                <li class="list-group-item">web Fullstack</li>
-                                <li class="list-group-item">Database administrator</li>
+                                <li class="list-group-item" v-for="item in skills">
+                                    {{ item }}
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -148,41 +159,14 @@
         </div>
     </section>
 
-    <section id="portofolio" class="bg-light pt-5">
-        <div class="container">
-            <div  class="text-center">
-                <h2>Portofolio</h2>
-                <div class="row pt-2">
-                    <div class="col-md-6">
-                        <div class="card" title="Website Rendang Pak Ombak">
-                            <img src="img/rendangpakombak.png" class="card-img-top" alt="Website Rendang Pak Ombak">
-                            <div class="card-body">
-                                <p class="card-text">The umkm project from the RPL course, I served as a Fullstack Dev</p>
-                                <a href="http://rpotesting.rf.gd" class="btn btn-primary">Visit</a>
-                            </div>
-                        </div>
-                    </div><div class="col-md-6">
-                        <div class="card" title="BSTI Project">
-                            <img src="img/bsti.png" class="card-img-top" alt="BSTI Project">
-                            <div class="card-body">
-                                <p class="card-text">Project from BSTI by serving as a database administrator</p>
-                                <a href="#" class="btn btn-primary">Visit</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="kontak" class="bg-dark text-light p-2">
+    <section id="kontak" class="bg-dark text-light p-2 mt-3">
         <div class="container">
             <div class="header text-center">
-                <h4>Create with love by Josep Ronaldo Francis Siregar</h4>
+                <h4>Create with love by {{ biodata.nama }}</h4>
             </div>
         </div>
     </section>
-
+</div>
     <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
